@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>설레는 첫 일본 여행 ✈️ 나에게 딱 맞는 초보 가이드</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              pink: '#FF6B8B',
+              rose: '#FF4757',
+              navy: '#1E293B',
+              sky: '#38BDF8',
+              mint: '#10B981',
+              amber: '#F59E0B',
+              bg: '#F8FAFC'
+            }
+          },
+          fontFamily: {
+            sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- FontAwesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background-color: #F8FAFC;
+      color: #0F172A;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Glassmorphism & Shadow Utilities */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    .hero-gradient {
+      background: linear-gradient(135deg, #1E293B 0%, #334155 50%, #475569 100%);
+    }
+
+    .accent-gradient {
+      background: linear-gradient(135deg, #FF6B8B 0%, #FF4757 100%);
+    }
+
+    /* Custom Checkbox Styling to Prevent Touch/Click Bugs */
+    .custom-checkbox {
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border: 2px solid #CBD5E1;
+      border-radius: 6px;
+      outline: none;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+      background-color: #FFFFFF;
+      flex-shrink: 0;
+    }
+
+    .custom-checkbox:checked {
+      background-color: #10B981;
+      border-color: #10B981;
+    }
+
+    .custom-checkbox:checked::after {
+      content: '\f00c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      color: white;
+      font-size: 12px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Modal Animation */
+    .modal-backdrop {
+      transition: opacity 0.25s ease-in-out;
+    }
+    
+    .modal-box {
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease-in-out;
+    }
+
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+  <!-- Top Navigation & Hero Section -->
+  <header class="hero-gradient text-white relative overflow-hidden pb-16 pt-8 px-4 sm:px-6 lg:px-8 shadow-xl">
+    <!-- Decorative background circles -->
+    <div class="absolute -right-12 -top-12 w-64 h-64 rounded-full bg-brand-pink/10 blur-3xl pointer-events-none"></div>
+    <div class="absolute -left-12 bottom-0 w-64 h-64 rounded-full bg-brand-sky/10 blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-5xl mx-auto relative z-10">
+      <!-- Navbar Badge -->
+      <div class="flex items-center justify-between mb-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs sm:text-sm font-medium">
+          <span class="w-2 h-2 rounded-full bg-brand-pink animate-pulse"></span>
+          <span>2026 초보자 완벽 대비 가이드</span>
+        </div>
+        <div class="text-xs text-slate-300 font-medium hidden sm:block">
+          <i class="fa-solid fa-plane-departure mr-1"></i> 5대 인기 도시 비교 분석
+        </div>
+      </div>
+
+      <!-- Hero Title -->
+      <div class="text-center sm:text-left max-w-3xl">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight text-white mb-4">
+          첫 일본 여행, <br class="sm:hidden">어디로 가야 실패 없을까?
+        </h1>
+        <p class="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed font-light">
+          딱딱한 설명회 문서는 그만! 비행시간, 시내 접근성, 여행 스타일에 맞춰 나에게 꼭 맞는 첫 일본 도시를 3초 만에 찾아보세요.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-3 justify-center sm:justify-start">
+          <a href="#quiz-section" class="inline-flex items-center justify-center gap-2 accent-gradient text-white font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-brand-pink/25 hover:shadow-brand-pink/40 hover:-translate-y-0.5 transition-all text-sm sm:text-base">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> 3초 맞춤 여행지 테스트
+          </a>
+          <a href="#cities-section" class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3.5 rounded-xl border border-white/20 backdrop-blur-md transition-all text-sm sm:text-base">
+            <i class="fa-solid fa-map-location-dot"></i> 5대 도시 비교 탐색
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20 w-full mb-16 space-y-12">
+
+    <!-- Section 1: 3-Second Recommendation Quiz Widget -->
+    <section id="quiz-section" class="glass-card rounded-2xl p-6 sm:p-8 shadow-lg">
+      <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-200/80">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-brand-pink/10 text-brand-pink flex items-center justify-center font-bold text-lg">
+            <i class="fa-solid fa-compass"></i>
+          </div>
+          <div>
+            <h2 class="text-xl font-bold text-slate-800">맞춤 여행지 진단 퀴즈</h2>
+            <p class="text-xs text-slate-500">질문 2개로 나의 첫 일본 여행지 바로 추천받기</p>
+          </div>
+        </div>
+        <span id="quiz-step-badge" class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-100 text-slate-600">Step 1 / 2</span>
+      </div>
+
+      <!-- Quiz Step 1 -->
+      <div id="quiz-step-1" class="space-y-4">
+        <h3 class="text-base sm:text-lg font-bold text-slate-800">Q1. 비행기 오래 타는 것이 부담스러우신가요?</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+          <button type="button" onclick="selectQuizAnswer(1, 'short')" class="flex flex-col text-left p-4 rounded-xl border border-slate-200 hover:border-brand-pink hover:bg-brand-pink/5 transition-all group cursor-pointer">
+            <span class="font-bold text-slate-800 group-hover:text-brand-pink flex items-center justify-between mb-1">
+              <span>⚡ 비행시간 짧은 게 최우선!</span>
+              <i class="fa-solid fa-chevron-right text-xs text-slate-300 group-hover:text-brand-pink"></i>
+            </span>
+            <span class="text-xs text-slate-500">1시간대 비행 & 이동 스트레스 최소화 희망</span>
+          </button>
+          <button type="button" onclick="selectQuizAnswer(1, 'medium')" class="flex flex-col text-left p-4 rounded-xl border border-slate-200 hover:border-brand-pink hover:bg-brand-pink/5 transition-all group cursor-pointer">
+            <span class="font-bold text-slate-800 group-hover:text-brand-pink flex items-center justify-between mb-1">
+              <span>✈️ 2~3시간 비행은 충분히 OK!</span>
+              <i class="fa-solid fa-chevron-right text-xs text-slate-300 group-hover:text-brand-pink"></i>
+            </span>
+            <span class="text-xs text-slate-500">비행거리보다는 여행지의 테마와 목적이 더 중요</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quiz Step 2 -->
+      <div id="quiz-step-2" class="space-y-4 hidden">
+        <h3 class="text-base sm:text-lg font-bold text-slate-800">Q2. 이번 여행에서 가장 즐기고 싶은 핵심 테마는?</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+          <button type="button" onclick="selectQuizAnswer(2, 'shopping')" class="flex items-center justify-between p-4 rounded-xl border border-slate-200 hover:border-brand-pink hover:bg-brand-pink/5 transition-all text-left cursor-pointer group">
+            <div>
+              <div class="font-bold text-slate-800 group-hover:text-brand-pink">🛍️ 화려한 대도시 & 트렌디 쇼핑</div>
+              <div class="text-xs text-slate-500">백화점, 핫플, 대중교통이 편리한 도시</div>
+            </div>
+            <i class="fa-solid fa-chevron-right text-xs text-slate-300 group-hover:text-brand-pink"></i>
+          </button>
+
+          <button type="button" onclick="selectQuizAnswer(2, 'food')" class="flex items-center justify-between p-4 rounded-xl border border-slate-200 hover:border-brand-pink hover:bg-brand-pink/5 transition-all text-left cursor-pointer group">
+            <div>
+              <div class="font-bold text-slate-800 group-hover:text-brand-pink">🍣 식도락 & 활기찬 맛집/테마파크</div>
+              <div class="text-xs text-slate-500">먹거리 천국, 즐길 거리가 가득한 곳</div>
+            </div>
+            <i class="fa-solid fa-chevron-right text-xs text-slate-300 group-hover:text-brand-pink"></i>
+          </button>
+
+          <button type="button" onclick="selectQuizAnswer(2, 'tradition')" class="flex items-center justify-between p-4 rounded-xl border border-slate-200 hover:border-brand-pink hover:bg-brand-pink/5 transition-all text-left cursor-pointer group">
+            <div>
+              <div class="font-bold text-slate-800 group-hover:text-brand-pink">⛩️ 고즈넉한 사찰 & 전통 역사 문화</div>
+              <div class="text-xs text-slate-500">고풍스러운 거리, 정갈한 분위기 감상</div>
+            </div>
+            <i class="fa-solid fa-chevron-right text-xs text-slate-300 group-hover:text-brand-pink"></i>
+          </button>
+
+          <button type="button" onclick="selectQuizAnswer(2, 'nature')" class="flex items-center justify-between p-4 rounded-xl border border-slate-200 hover:border-brand-pink hover:bg-brand-pink/5 transition-all text-left cursor-pointer group">
+            <div>
+              <div class="font-bold text-slate-800 group-hover:text-brand-pink">❄️ 탁 트인 대자연 & 계절 힐링</div>
+              <div class="text-xs text-slate-500">설경, 온천, 여유로운 풍경 감상</div>
+            </div>
+            <i class="fa-solid fa-chevron-right text-xs text-slate-300 group-hover:text-brand-pink"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quiz Result Card -->
+      <div id="quiz-result" class="hidden space-y-5 animate-fadeIn">
+        <div class="p-5 sm:p-6 rounded-xl bg-gradient-to-br from-slate-900 to-slate-800 text-white relative overflow-hidden">
+          <div class="absolute right-0 bottom-0 opacity-10 text-8xl font-black pr-4 pb-2 select-none">JAPAN</div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-pink text-white text-xs font-bold mb-3">
+            <i class="fa-solid fa-star"></i> 매칭률 <span id="quiz-match-score">98</span>% 추천
+          </div>
+          <h3 id="quiz-result-title" class="text-2xl sm:text-3xl font-extrabold text-white mb-2">도시 이름</h3>
+          <p id="quiz-result-desc" class="text-slate-300 text-sm leading-relaxed mb-4">추천 이유 설명이 들어갑니다.</p>
+
+          <div class="flex flex-wrap gap-2 text-xs text-slate-200 mb-6">
+            <span id="quiz-tag-1" class="bg-white/10 px-2.5 py-1 rounded-md border border-white/10">✈️ 비행 1시간 15분</span>
+            <span id="quiz-tag-2" class="bg-white/10 px-2.5 py-1 rounded-md border border-white/10">🚇 시내 이동 10분</span>
+            <span id="quiz-tag-3" class="bg-white/10 px-2.5 py-1 rounded-md border border-white/10">난이도: 매우 쉬움</span>
+          </div>
+
+          <div class="flex flex-wrap gap-3">
+            <button type="button" id="quiz-detail-btn" class="bg-white text-slate-900 font-bold px-4 py-2.5 rounded-lg text-xs sm:text-sm hover:bg-slate-100 transition-all cursor-pointer">
+              도시 상세 정보 전체보기
+            </button>
+            <button type="button" onclick="resetQuiz()" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-4 py-2.5 rounded-lg text-xs sm:text-sm border border-white/20 transition-all cursor-pointer">
+              <i class="fa-solid fa-rotate-left mr-1"></i> 다시 테스트하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: 5 Major Cities Explorer with Tag Filtering -->
+    <section id="cities-section" class="glass-card rounded-2xl p-6 sm:p-8 shadow-lg">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 mb-6 border-b border-slate-200/80">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-brand-mint/10 text-brand-mint flex items-center justify-center font-bold text-lg">
+            <i class="fa-solid fa-city"></i>
+          </div>
+          <div>
+            <h2 class="text-xl font-bold text-slate-800">5대 대표 도시 탐색기</h2>
+            <p class="text-xs text-slate-500">카테고리 필터를 클릭해 원하는 테마의 도시를 모아보세요</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-6 hide-scrollbar text-xs sm:text-sm font-semibold">
+        <button type="button" onclick="filterCities('all', this)" class="city-filter-btn px-4 py-2 rounded-xl bg-slate-900 text-white shadow-sm transition-all whitespace-nowrap cursor-pointer">
+          전체 보기
+        </button>
+        <button type="button" onclick="filterCities('easy', this)" class="city-filter-btn px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all whitespace-nowrap cursor-pointer">
+          ⚡ 가장 가까운
+        </button>
+        <button type="button" onclick="filterCities('shopping', this)" class="city-filter-btn px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all whitespace-nowrap cursor-pointer">
+          🛍️ 쇼핑/도시
+        </button>
+        <button type="button" onclick="filterCities('food', this)" class="city-filter-btn px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all whitespace-nowrap cursor-pointer">
+          🍣 식도락/엔터
+        </button>
+        <button type="button" onclick="filterCities('history', this)" class="city-filter-btn px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all whitespace-nowrap cursor-pointer">
+          ⛩️ 역사/전통
+        </button>
+        <button type="button" onclick="filterCities('nature', this)" class="city-filter-btn px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all whitespace-nowrap cursor-pointer">
+          ❄️ 대자연/힐링
+        </button>
+      </div>
+
+      <!-- City Cards Container Grid -->
+      <div id="city-cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- City cards will be dynamically injected here via JavaScript -->
+      </div>
+    </section>
+
+    <!-- Section 3: Transit Time & Accessibility Comparison Visualizer -->
+    <section class="glass-card rounded-2xl p-6 sm:p-8 shadow-lg">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 mb-6 border-b border-slate-200/80">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-brand-sky/10 text-brand-sky flex items-center justify-center font-bold text-lg">
+            <i class="fa-solid fa-clock"></i>
+          </div>
+          <div>
+            <h2 class="text-xl font-bold text-slate-800">이동시간 & 피로도 비교 데이터</h2>
+            <p class="text-xs text-slate-500">인천 출발 비행시간 + 공항에서 시내 진입까지의 총 소요시간</p>
+          </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="flex items-center gap-4 text-xs font-semibold text-slate-600">
+          <div class="flex items-center gap-1.5">
+            <span class="w-3 h-3 rounded-full bg-sky-500"></span> 인천발 비행시간
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="w-3 h-3 rounded-full bg-brand-pink"></span> 공항 ➔ 시내 이동
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Bars Visualizer Area -->
+      <div id="transit-bar-container" class="space-y-5">
+        <!-- Dynamic visualizer bars inserted via JS -->
+      </div>
+
+      <div class="mt-6 p-4 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-600 flex items-start gap-2.5">
+        <i class="fa-solid fa-circle-info text-slate-400 text-sm mt-0.5"></i>
+        <span><strong>초보자 꿀팁:</strong> 공항에 내려서 시내 숙소까지 들어가는 이동시간이 짧을수록 길 찾기 부담과 첫날 체력 소모가 크게 줄어듭니다!</span>
+      </div>
+    </section>
+
+    <!-- Section 4: Interactive Checklist App -->
+    <section class="glass-card rounded-2xl p-6 sm:p-8 shadow-lg">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 mb-6 border-b border-slate-200/80">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-brand-amber/10 text-brand-amber flex items-center justify-center font-bold text-lg">
+            <i class="fa-solid fa-clipboard-check"></i>
+          </div>
+          <div>
+            <h2 class="text-xl font-bold text-slate-800">출발 전 실시간 체크리스트</h2>
+            <p class="text-xs text-slate-500">항목을 클릭하여 준비 상태를 체크해 보세요 (자동 저장 지원)</p>
+          </div>
+        </div>
+
+        <!-- Progress Counter -->
+        <div class="flex items-center gap-3 bg-slate-50 border border-slate-200/80 px-4 py-2 rounded-xl">
+          <span class="text-xs font-bold text-slate-600">준비 달성률</span>
+          <span id="checklist-progress-text" class="text-sm font-black text-brand-mint">0%</span>
+        </div>
+      </div>
+
+      <!-- Real-time Progress Bar -->
+      <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden mb-6">
+        <div id="checklist-progress-fill" class="bg-brand-mint h-full w-0 transition-all duration-300"></div>
+      </div>
+
+      <!-- Checklist Items -->
+      <div id="checklist-items-container" class="space-y-3">
+        <!-- Checklist items rendered by JS to ensure bug-free event binding -->
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center text-xs">
+        <span class="text-slate-400">💡 체크박스를 클릭하면 브라우저에 상태가 자동 저장됩니다.</span>
+        <button type="button" onclick="resetChecklist()" class="text-slate-500 hover:text-slate-800 underline font-medium cursor-pointer">
+          초기화
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-400 py-8 text-center text-xs border-t border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 space-y-2">
+      <p class="font-medium text-slate-300">초보자를 위한 일본 여행 가이드 스마트 웹앱</p>
+      <p>© 2026 Japan Beginner Travel Guide. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- City Details Modal Dialog -->
+  <div id="city-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none modal-backdrop bg-slate-900/60 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl p-6 relative modal-box transform scale-95">
+      <!-- Close Button -->
+      <button type="button" onclick="closeModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center transition-all cursor-pointer">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Modal Content Header -->
+      <div class="mb-4 pr-6">
+        <div class="inline-block px-2.5 py-0.5 rounded bg-brand-pink/10 text-brand-pink text-xs font-bold mb-1" id="modal-badge">도시 테마</div>
+        <h3 class="text-2xl font-black text-slate-800" id="modal-title">도시 이름</h3>
+        <p class="text-xs text-slate-500" id="modal-subtitle">한글 / 영문 이름</p>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="grid grid-cols-2 gap-2 bg-slate-50 p-3 rounded-xl border border-slate-100 mb-5 text-xs">
+        <div>
+          <span class="text-slate-400 block">인천발 비행시간</span>
+          <span class="font-bold text-slate-800" id="modal-flight">2시간 15분</span>
+        </div>
+        <div>
+          <span class="text-slate-400 block">공항 ➔ 시내 이동</span>
+          <span class="font-bold text-slate-800" id="modal-transit">36분 ~ 1시간</span>
+        </div>
+        <div>
+          <span class="text-slate-400 block">추천 일정</span>
+          <span class="font-bold text-slate-800" id="modal-duration">3박 4일 이상</span>
+        </div>
+        <div>
+          <span class="text-slate-400 block">여행 난이도</span>
+          <span class="font-bold text-slate-800" id="modal-difficulty">보통</span>
+        </div>
+      </div>
+
+      <!-- Detail Body Sections -->
+      <div class="space-y-4 text-xs sm:text-sm leading-relaxed text-slate-600">
+        <div>
+          <h4 class="font-bold text-slate-800 mb-1 flex items-center gap-1.5">
+            <i class="fa-solid fa-thumbs-up text-emerald-500"></i> 주요 장점
+          </h4>
+          <p id="modal-pros" class="bg-emerald-50/60 p-3 rounded-lg border border-emerald-100 text-slate-700">장점 설명</p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-800 mb-1 flex items-center gap-1.5">
+            <i class="fa-solid fa-circle-exclamation text-amber-500"></i> 아쉬운 점 / 주의사항
+          </h4>
+          <p id="modal-cons" class="bg-amber-50/60 p-3 rounded-lg border border-amber-100 text-slate-700">단점 설명</p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-800 mb-1 flex items-center gap-1.5">
+            <i class="fa-solid fa-location-dot text-rose-500"></i> 대표 주요 스팟
+          </h4>
+          <p id="modal-spots" class="bg-slate-50 p-3 rounded-lg border border-slate-100 font-medium text-slate-800">대표 명소</p>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 flex justify-end">
+        <button type="button" onclick="closeModal()" class="w-full sm:w-auto bg-slate-900 text-white font-bold px-6 py-2.5 rounded-xl text-xs sm:text-sm hover:bg-slate-800 transition-all cursor-pointer">
+          확인 및 닫기
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* Database of Japan 5 Cities */
+    const CITIES_DATA = [
+      {
+        id: 'tokyo',
+        name: '도쿄 (Tokyo)',
+        tagGroup: ['all', 'shopping'],
+        badge: '대도시 & 트렌드',
+        flight: '약 2시간 15분',
+        flightMins: 135,
+        transit: '열차 36분 ~ 1시간',
+        transitMins: 45,
+        duration: '3박 4일 이상',
+        difficulty: '보통',
+        bgGradient: 'from-blue-500 to-indigo-600',
+        summary: '일본의 수도! 화려한 대도시 야경, 쇼핑, 미식, 테마파크까지 모든 트렌드가 집중된 대표 코스입니다.',
+        pros: '대중교통 네트워크가 매우 발달해 있으며, 쇼핑 및 미식 옵션이 세계 최고 수준으로 풍부함.',
+        cons: '지하철 노선이 매우 복잡하여 초보자가 길을 잃기 쉬우며 숙박 비용이 상대적으로 높은 편.',
+        spots: '시부야, 신주쿠, 아사쿠사, 도쿄타워, 긴자, 디즈니랜드'
+      },
+      {
+        id: 'osaka',
+        name: '오사카 (Osaka)',
+        tagGroup: ['all', 'food', 'shopping'],
+        badge: '식도락 & 엔터',
+        flight: '약 1시간 45분',
+        flightMins: 105,
+        transit: '라피트 열차 약 40분',
+        transitMins: 40,
+        duration: '2박 3일 ~ 3박 4일',
+        difficulty: '쉬움',
+        bgGradient: 'from-amber-500 to-rose-500',
+        summary: '"먹다가 망한다"는 맛집의 도시. 한국어 표지판이 잘 되어 있어 초보자가 여행하기 가장 편합니다.',
+        pros: '한국어 안내가 매우 우수하고 상인들이 친절함. 유니버설 스튜디오(USJ) 및 활기찬 거리 분위기.',
+        cons: '인기 관광지 및 맛집마다 대기 줄이 매우 긴 편.',
+        spots: '도톤보리, 오사카성, 유니버설 스튜디오 재팬, 우메다 스카이빌딩'
+      },
+      {
+        id: 'kyoto',
+        name: '교토 (Kyoto)',
+        tagGroup: ['all', 'history'],
+        badge: '전통 & 역사',
+        flight: '간사이 공항 진입 후 이동',
+        flightMins: 105,
+        transit: '특급 열차 약 75분',
+        transitMins: 75,
+        duration: '2박 3일 (오사카 연계)',
+        difficulty: '보통',
+        bgGradient: 'from-emerald-600 to-teal-700',
+        summary: '수백 년 된 사찰과 신사가 보존된 고도(古都). 일본 고유의 전통적인 풍경을 감상하기 가장 좋습니다.',
+        pros: '고즈넉하고 고풍스러운 일본 고유의 감성, 정갈한 전통 요리와 목조 건물 감상.',
+        cons: '지하철보다는 시내버스 중심이라 출퇴근시간 교통 체증이 발생할 수 있음.',
+        spots: '후시미 이나리 신사(붉은 토리이), 기요미즈데라(청수사), 아라시야마 대나무숲'
+      },
+      {
+        id: 'fukuoka',
+        name: '후쿠오카 (Fukuoka)',
+        tagGroup: ['all', 'easy', 'food'],
+        badge: '초보 추천 1위',
+        flight: '약 1시간 15분',
+        flightMins: 75,
+        transit: '지하철 단 10분',
+        transitMins: 10,
+        duration: '2박 3일',
+        difficulty: '매우 쉬움 (최상)',
+        bgGradient: 'from-rose-500 to-pink-600',
+        summary: '비행기 1시간 15분 + 공항에서 시내까지 지하철 10분! 이동 피로가 전혀 없는 최상의 초보 도시입니다.',
+        pros: '이동 시간이 단연 압도적으로 짧아 짧은 주말 여행에 최적화. 가성비 뛰어난 미식(라멘, 모츠나베).',
+        cons: '도쿄/오사카에 비해 스펙터클한 대형 랜드마크나 테마파크는 다소 적은 편.',
+        spots: '하카타역, 텐진 쇼핑가, 오호리 공원, 나카스 포장마차 거리'
+      },
+      {
+        id: 'sapporo',
+        name: '삿포로 (Sapporo)',
+        tagGroup: ['all', 'nature', 'food'],
+        badge: '대자연 & 힐링',
+        flight: '약 2시간 40분',
+        flightMins: 160,
+        transit: '쾌속 열차 약 37분',
+        transitMins: 37,
+        duration: '3박 4일 이상',
+        difficulty: '보통',
+        bgGradient: 'from-sky-500 to-blue-700',
+        summary: '겨울에는 환상적인 설경, 여름에는 시원한 날씨! 신선한 해산물과 낭만이득 홋카이도의 중심입니다.',
+        pros: '도심과 웅장한 대자연을 동시 경험 가능. 게 요리, 징기스칸 양고기, 신선한 디저트 천국.',
+        cons: '비행시간이 다소 길고 비에이/후라노 등 근교 이동 시 차량 이동시간 소요.',
+        spots: '오도리 공원, 오타루 운하, 비에이/후라노 청의 호수, 삿포로 맥주 박물관'
+      }
+    ];
+
+    /* Checklist Data items */
+    const CHECKLIST_DATA = [
+      { id: 'passport', label: '여권 유효기간 확인', desc: '귀국일 기준 6개월 이상 여유가 있는지 체크하기' },
+      { id: 'visitjapan', label: 'Visit Japan Web 사전 등록', desc: '온라인으로 입국/세관신고 사전 등록하고 QR코드 캡처' },
+      { id: 'payment', label: '결제 수단 준비', desc: '약간의 엔화 현금 + 트래블 체크카드(수수료 면제) 발급' },
+      { id: 'plug', label: '110V 돼지코 변환 플러그', desc: '일본은 110V 전압을 사용하므로 변환 플러그 지참' },
+      { id: 'sim', label: 'eSIM / 로밍 / 포켓 와이파이', desc: '현지에서 지도와 번역기를 사용하기 위한 데이터 신청' }
+    ];
+
+    /* Application State */
+    let userQuizAnswers = { q1: null, q2: null };
+    let checklistState = JSON.parse(localStorage.getItem('japan_travel_checklist_state') || '{}');
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderCityCards('all');
+      renderTransitVisualizer();
+      renderChecklist();
+    });
+
+    function selectQuizAnswer(step, answerKey) {
+      if (step === 1) {
+        userQuizAnswers.q1 = answerKey;
+        document.getElementById('quiz-step-1').classList.add('hidden');
+        document.getElementById('quiz-step-2').classList.remove('hidden');
+        document.getElementById('quiz-step-badge').innerText = 'Step 2 / 2';
+      } else if (step === 2) {
+        userQuizAnswers.q2 = answerKey;
+        document.getElementById('quiz-step-2').classList.add('hidden');
+        calculateQuizResult();
+      }
+    }
+
+    function calculateQuizResult() {
+      let recommendedCityId = 'fukuoka';
+      let matchScore = 98;
+
+      if (userQuizAnswers.q1 === 'short') {
+        recommendedCityId = 'fukuoka';
+        matchScore = 99;
+      } else {
+        if (userQuizAnswers.q2 === 'shopping') recommendedCityId = 'tokyo';
+        else if (userQuizAnswers.q2 === 'food') recommendedCityId = 'osaka';
+        else if (userQuizAnswers.q2 === 'tradition') recommendedCityId = 'kyoto';
+        else if (userQuizAnswers.q2 === 'nature') recommendedCityId = 'sapporo';
+        matchScore = 95;
+      }
+
+      const city = CITIES_DATA.find(c => c.id === recommendedCityId);
+      
+      document.getElementById('quiz-match-score').innerText = matchScore;
+      document.getElementById('quiz-result-title').innerText = city.name;
+      document.getElementById('quiz-result-desc').innerText = city.summary;
+
+      document.getElementById('quiz-tag-1').innerText = `✈️ 비행: ${city.flight}`;
+      document.getElementById('quiz-tag-2').innerText = `🚇 시내 이동: ${city.transit}`;
+      document.getElementById('quiz-tag-3').innerText = `난이도: ${city.difficulty}`;
+
+      document.getElementById('quiz-detail-btn').onclick = () => openCityModal(city.id);
+
+      document.getElementById('quiz-step-badge').innerText = '진단 완료';
+      document.getElementById('quiz-result').classList.remove('hidden');
+    }
+
+    function resetQuiz() {
+      userQuizAnswers = { q1: null, q2: null };
+      document.getElementById('quiz-result').classList.add('hidden');
+      document.getElementById('quiz-step-2').classList.add('hidden');
+      document.getElementById('quiz-step-1').classList.remove('hidden');
+      document.getElementById('quiz-step-badge').innerText = 'Step 1 / 2';
+    }
+
+    function renderCityCards(filterTag) {
+      const grid = document.getElementById('city-cards-grid');
+      grid.innerHTML = '';
+
+      const filteredCities = CITIES_DATA.filter(city => city.tagGroup.includes(filterTag));
+
+      filteredCities.forEach(city => {
+        const card = document.createElement('div');
+        card.className = 'glass-card rounded-xl p-5 flex flex-col justify-between hover:shadow-md transition-all hover:-translate-y-1 border border-slate-200/80';
+        
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-slate-100 text-slate-700">${city.badge}</span>
+              <span class="text-xs text-slate-400 font-medium">난이도: ${city.difficulty}</span>
+            </div>
+            <h3 class="text-lg font-extrabold text-slate-800 mb-2">${city.name}</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-4 line-clamp-2">${city.summary}</p>
+            
+            <div class="space-y-1.5 text-xs text-slate-500 bg-slate-50 p-3 rounded-lg mb-4">
+              <div class="flex items-center justify-between">
+                <span>✈️ 비행시간:</span>
+                <span class="font-semibold text-slate-700">${city.flight}</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>🚇 시내진입:</span>
+                <span class="font-semibold text-slate-700">${city.transit}</span>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" onclick="openCityModal('${city.id}')" class="w-full mt-2 bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-lg text-xs transition-all cursor-pointer flex items-center justify-center gap-1.5">
+            <span>상세 가이드 보기</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </button>
+        `;
+
+        grid.appendChild(card);
+      });
+    }
+
+    function filterCities(category, btnElement) {
+      document.querySelectorAll('.city-filter-btn').forEach(btn => {
+        btn.className = 'city-filter-btn px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all whitespace-nowrap cursor-pointer';
+      });
+
+      btnElement.className = 'city-filter-btn px-4 py-2 rounded-xl bg-slate-900 text-white shadow-sm transition-all whitespace-nowrap cursor-pointer';
+      renderCityCards(category);
+    }
+
+    function renderTransitVisualizer() {
+      const container = document.getElementById('transit-bar-container');
+      container.innerHTML = '';
+
+      const MAX_MINS = 220; // Scale normalization max
+
+      CITIES_DATA.forEach(city => {
+        const flightPercent = (city.flightMins / MAX_MINS) * 100;
+        const transitPercent = (city.transitMins / MAX_MINS) * 100;
+        const totalMins = city.flightMins + city.transitMins;
+
+        const row = document.createElement('div');
+        row.className = 'space-y-1.5';
+        row.innerHTML = `
+          <div class="flex items-center justify-between text-xs font-bold text-slate-700">
+            <span>${city.name}</span>
+            <span class="text-slate-500 font-normal">총 약 ${Math.floor(totalMins/60)}시간 ${totalMins%60}분 소요</span>
+          </div>
+          <div class="h-4 bg-slate-100 rounded-full overflow-hidden flex w-full p-0.5 border border-slate-200/60">
+            <div class="bg-sky-500 h-full rounded-l-full transition-all duration-500" style="width: ${flightPercent}%" title="비행시간 ${city.flightMins}분"></div>
+            <div class="bg-brand-pink h-full rounded-r-full transition-all duration-500" style="width: ${transitPercent}%" title="시내이동 ${city.transitMins}분"></div>
+          </div>
+        `;
+
+        container.appendChild(row);
+      });
+    }
+
+    function renderChecklist() {
+      const container = document.getElementById('checklist-items-container');
+      container.innerHTML = '';
+
+      CHECKLIST_DATA.forEach(item => {
+        const isChecked = !!checklistState[item.id];
+
+        const itemEl = document.createElement('div');
+        itemEl.className = `p-3.5 rounded-xl border transition-all flex items-start gap-3 cursor-pointer select-none ${
+          isChecked ? 'bg-emerald-50/50 border-emerald-200' : 'bg-white border-slate-200 hover:border-slate-300'
+        }`;
+        
+        // Handle row click cleanly without bubbling bugs
+        itemEl.onclick = (e) => {
+          // If clicked directly on the checkbox input, let the change event handle it
+          if (e.target.tagName === 'INPUT') return;
+          toggleChecklistItem(item.id);
+        };
+
+        itemEl.innerHTML = `
+          <input 
+            type="checkbox" 
+            id="chk-${item.id}" 
+            class="custom-checkbox mt-0.5" 
+            ${isChecked ? 'checked' : ''}
+            onchange="handleCheckboxChange('${item.id}', this.checked)"
+          >
+          <div class="flex-1">
+            <label for="chk-${item.id}" class="text-xs sm:text-sm font-bold block cursor-pointer ${
+              isChecked ? 'line-through text-slate-400' : 'text-slate-800'
+            }">
+              ${item.label}
+            </label>
+            <p class="text-xs text-slate-500 mt-0.5">${item.desc}</p>
+          </div>
+        `;
+
+        container.appendChild(itemEl);
+      });
+
+      updateChecklistProgress();
+    }
+
+    function handleCheckboxChange(itemId, isChecked) {
+      checklistState[itemId] = isChecked;
+      saveChecklistState();
+      renderChecklist();
+    }
+
+    function toggleChecklistItem(itemId) {
+      checklistState[itemId] = !checklistState[itemId];
+      saveChecklistState();
+      renderChecklist();
+    }
+
+    function updateChecklistProgress() {
+      const total = CHECKLIST_DATA.length;
+      const checkedCount = Object.values(checklistState).filter(Boolean).length;
+      const percentage = Math.round((checkedCount / total) * 100);
+
+      document.getElementById('checklist-progress-text').innerText = `${percentage}%`;
+      document.getElementById('checklist-progress-fill').style.width = `${percentage}%`;
+    }
+
+    function saveChecklistState() {
+      localStorage.setItem('japan_travel_checklist_state', JSON.stringify(checklistState));
+    }
+
+    function resetChecklist() {
+      checklistState = {};
+      saveChecklistState();
+      renderChecklist();
+    }
+
+    /* Modal Logic */
+    function openCityModal(cityId) {
+      const city = CITIES_DATA.find(c => c.id === cityId);
+      if (!city) return;
+
+      document.getElementById('modal-badge').innerText = city.badge;
+      document.getElementById('modal-title').innerText = city.name;
+      document.getElementById('modal-subtitle').innerText = `추천 일정: ${city.duration}`;
+      document.getElementById('modal-flight').innerText = city.flight;
+      document.getElementById('modal-transit').innerText = city.transit;
+      document.getElementById('modal-duration').innerText = city.duration;
+      document.getElementById('modal-difficulty').innerText = city.difficulty;
+
+      document.getElementById('modal-pros').innerText = city.pros;
+      document.getElementById('modal-cons').innerText = city.cons;
+      document.getElementById('modal-spots').innerText = city.spots;
+
+      const modal = document.getElementById('city-modal');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modal.querySelector('.modal-box').classList.remove('scale-95');
+      modal.querySelector('.modal-box').classList.add('scale-100');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('city-modal');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      modal.querySelector('.modal-box').classList.remove('scale-100');
+      modal.querySelector('.modal-box').classList.add('scale-95');
+    }
+
+    // Close modal on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // Close modal on backdrop click
+    document.getElementById('city-modal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('city-modal')) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
